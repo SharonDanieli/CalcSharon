@@ -1,5 +1,6 @@
 package com.example.user.calcsharon;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,66 +33,66 @@ public class MainActivity extends AppCompatActivity {
         cre = (Button) findViewById(R.id.cre);
     }
 
-    public void main(String[]args){
-        savetonum1(num1);//הזנת מס' ראשון ושמירתו בnum1
-        //לחיצה על פעולה
-        savetonum2(num2);//הזנת מס' שני ושמירתו בnum2
-
-    }
-
-    int num1=0, num2=0;
+    String st = et.getText().toString();
     public void savetonum1(int num1){
         String st = et.getText().toString();
         num1 = Integer.parseInt(st);
     }
 
-    public void savetonum2(int num2){
-        String st = et.getText().toString();
-        num2 = Integer.parseInt(st);
-    }
-
+    int num1=0;
     int operation=0;
     public void hibur(View view) {
         et.setText("");
+        num1+=Integer.parseInt(st);
         operation=1;
     }
 
     public void hisur(View view) {
         et.setText("");
+        num1-=Integer.parseInt(st);
         operation=2;
     }
 
     public void kefel(View view) {
         et.setText("");
+        num1*=Integer.parseInt(st);
         operation=3;
     }
 
     public void hiluk(View view) {
         et.setText("");
+        num1/=Integer.parseInt(st);
         operation=4;
     }
+
 
     public void shave(View view) {
         et.setText("");
         switch (operation) {
             case 1:
-                num1+=num2;
-                et.setText(num1+num2);
+                et.setText(num1+Integer.parseInt(st));
                 break;
             case 2:
-                num1-=num2;
-                et.setText(num1-num2);
+                et.setText(num1-Integer.parseInt(st));
                 break;
             case 3:
-                num1*=num2;
-                et.setText(num1*num2);
+                et.setText(num1*Integer.parseInt(st));
                 break;
             case 4:
-                num1/=num2;
-                et.setText(num1/num2);
+                et.setText(num1/Integer.parseInt(st));
                 break;
             default:
                 Toast.makeText(this, "please click operation", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void cleartext(View view) {
+        et.setText("");
+        num1=0;
+    }
+
+    public void gocredit(View view) {
+        Intent t = new Intent(this, credits.class);
+        startActivity(t);
     }
 }
