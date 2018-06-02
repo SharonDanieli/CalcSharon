@@ -37,15 +37,13 @@ public class MainActivity extends AppCompatActivity {
         operation = 0;
     }
 
-
-    public void savetonum() {
+    public void savetonum(View view) {
         Double num;
         String st = et.getText().toString();
         //check input- if wrong toast
         num = Double.parseDouble(st);
         num1exist = true;// set the flag to true for 1st operand return the double
     }
-
 
     public void hibur(View view) {
         if ((!et.getText().toString().equals("")) && ((!et.getText().toString().equals(".")) && (!et.getText().toString().equals("-")) && (!et.getText().toString().equals("-.")))) {
@@ -93,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 String st = et.getText().toString();
                 num2 = Double.parseDouble(st);//enter the number from et to num2
                 et.setText("");
-                num1 += num2;//calc operation between 1 & 2 and store result in num1
+                num1 *= num2;//calc operation between 1 & 2 and store result in num1
                 et.setHint("" + num1);//display num1
             } else {
                 String st = et.getText().toString();
@@ -104,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "input is unvailable", Toast.LENGTH_SHORT).show();
         }
-        operation = 1;
+        operation = 3;
     }
 
     public void hiluk(View view) {
@@ -113,7 +111,10 @@ public class MainActivity extends AppCompatActivity {
                 String st = et.getText().toString();
                 num2 = Double.parseDouble(st);//enter the number from et to num2
                 et.setText("");
-                num1 += num2;//calc operation between 1 & 2 and store result in num1
+                if (num2==0)
+                    Toast.makeText(this, "math ERROR", Toast.LENGTH_SHORT).show();
+                else
+                    num1 /= num2;//calc operation between 1 & 2 and store result in num1
                 et.setHint("" + num1);//display num1
             } else {
                 String st = et.getText().toString();
@@ -124,13 +125,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "input is unvailable", Toast.LENGTH_SHORT).show();
         }
-        operation = 1;
+        operation = 4;
     }
-    // check if there is first num
-/*
-        num1+=Integer.parseInt(st);
-        operation=1;*/
-
 
     public void shave(View view) {
         if ((!et.getText().toString().equals("")) && ((!et.getText().toString().equals(".")) && (!et.getText().toString().equals("-")) && (!et.getText().toString().equals("-.")))) {
@@ -176,9 +172,7 @@ public class MainActivity extends AppCompatActivity {
         t.putExtra("result", str);
         startActivity(t);
     }
+
+    public void toReturn(View view) {
+    }
 }
-
-
-
-
-
