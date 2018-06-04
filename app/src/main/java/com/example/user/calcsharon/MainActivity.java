@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Button plus, minus, multi, divi, delete, equal, cre;
     Double num1 = 0.0;
     Double num2 = 0.0;
+    Double res = 0.0;
     Boolean num1exist;
     int operation;
 
@@ -130,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void shave(View view) {
         if ((!et.getText().toString().equals("")) && ((!et.getText().toString().equals(".")) && (!et.getText().toString().equals("-")) && (!et.getText().toString().equals("-.")))) {
-            double res = 0;
             switch (operation) {
                 case 1:
                     String st1 = et.getText().toString();
@@ -158,21 +158,24 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "please click operation", Toast.LENGTH_SHORT).show();
                     et.setText("" + res);
             }
+            num1 = res;
+            String st3 = String.valueOf(res);
+            et.setText(st3);
         }
+
     }
 
     public void cleartext(View view) {
-        et.setText("");
+        et.setText(""); et.setHint("");
         num1=0.0; num2=0.0; operation=0;
     }
 
     public void goCredit(View view) {
+        res = num1;
         Intent t = new Intent(this, credits.class);
-        String str = Double.toString(num1);
+        String str = Double.toString(res);
         t.putExtra("result", str);
         startActivity(t);
     }
 
-    public void toReturn(View view) {
-    }
 }

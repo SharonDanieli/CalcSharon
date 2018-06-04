@@ -16,7 +16,6 @@ public class credits extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credits);
         answer = (TextView)findViewById(R.id.answer);
-        returnn = (Button)findViewById(R.id.returnn);
         answer.setText("the last result is: " + getIntent().getExtras().getString("result"));
     }
 
