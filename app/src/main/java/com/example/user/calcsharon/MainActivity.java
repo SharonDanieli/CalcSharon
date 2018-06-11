@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 String st = et.getText().toString();
                 num2 = Double.parseDouble(st);//enter the number from et to num2
                 et.setText("");
-                if (num2==0)
+                if (num2 == 0)
                     Toast.makeText(this, "math ERROR", Toast.LENGTH_SHORT).show();
                 else
                     num1 /= num2;//calc operation between 1 & 2 and store result in num1
@@ -166,16 +166,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cleartext(View view) {
-        et.setText(""); et.setHint("");
-        num1=0.0; num2=0.0; operation=0;
+        et.setText("");
+        et.setHint("");
+        num1 = 0.0;
+        num2 = 0.0;
+        operation = 0;
     }
+
 
     public void goCredit(View view) {
         res = num1;
         Intent t = new Intent(this, credits.class);
         String str = Double.toString(res);
-        t.putExtra("result", str);
-        startActivity(t);
+        t.putExtra("res", str);
+        startActivityForResult(t,1);
     }
 
+
+    public void onActivityResult(int rqCode, int rsCode, Intent dataBack) {
+        String back = dataBack.getStringExtra("resultt");
+        et.setText("The last result is: " + back);
+    }
 }
